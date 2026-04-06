@@ -170,7 +170,7 @@
       font-size: 14px;
       color: #cbd5f5;
     }
-  /* ===== الشركات (حركة تلقائية بدون تكرار) ===== */
+ /* ===== الشركات (حركة سلسة بدون فراغ) ===== */
 .brands {
   text-align: center;
   margin-top: 80px;
@@ -180,69 +180,35 @@
   overflow: hidden;
 }
 
-.brands h2 {
-  font-size: 26px;
-  color: #0f172a;
-  margin-bottom: 30px;
-}
-
-/* الحاوية */
 .brands-slider {
-  width: 100%;
   overflow: hidden;
-  position: relative;
+  width: 100%;
 }
 
-/* المسار */
 .brands-track {
   display: flex;
   gap: 25px;
-  width: max-content;
-  animation: scrollBrands 12s linear infinite;
+  align-items: center;
+  will-change: transform;
 }
 
-/* الكروت */
 .brand-card {
   background: white;
   padding: 15px;
   border-radius: 15px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.08);
   min-width: 120px;
-  transition: 0.3s;
 }
 
-/* الصورة */
 .brand-card img {
   width: 80px;
-  height: auto;
   opacity: 0.85;
   transition: 0.3s;
-}
-
-/* تأثير hover */
-.brand-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }
 
 .brand-card:hover img {
   opacity: 1;
   transform: scale(1.1);
-}
-
-/* الحركة */
-@keyframes scrollBrands {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-/* إيقاف الحركة عند المرور (اختياري) */
-.brands-track:hover {
-  animation-play-state: paused;
 }
   </style>
 </head>
