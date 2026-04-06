@@ -170,6 +170,36 @@
       font-size: 14px;
       color: #cbd5f5;
     }
+    /* ===== الشركات ===== */
+.brands {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.brands h2 {
+  font-size: 26px;
+  color: #0f172a;
+  margin-bottom: 30px;
+}
+
+.brands-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 35px;
+}
+
+.brands-container img {
+  width: 100px;
+  height: auto;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.brands-container img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
   </style>
 </head>
 
@@ -212,7 +242,18 @@
       </div>
 
     </section>
+<section class="brands">
+  <h2>الشركات التي نتعامل معها</h2>
 
+  <div class="brands-container">
+    <img src="images/brands/toyota.png" alt="Toyota">
+    <img src="images/brands/honda.png" alt="Honda">
+    <img src="images/brands/nissan.png" alt="Nissan">
+    <img src="images/brands/ford.png" alt="Ford">
+    <img src="images/brands/bmw.png" alt="BMW">
+    <img src="images/brands/mercedes.png" alt="Mercedes">
+  </div>
+</section>
     <!-- التواصل -->
     <section class="contact-banner">
       <h3>تواصل معنا عبر وسائل التواصل</h3>
