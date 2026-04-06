@@ -62,21 +62,35 @@ document.addEventListener("DOMContentLoaded", () => {
         let position = 0;
         const speed = 0.5;
 
-        function animate() {
-            position += speed;
-            track.style.transform = `translateX(-${position}px)`;
+       document.addEventListener("DOMContentLoaded", () => {
 
-            const firstCard = track.children[0];
-            const firstWidth = firstCard.offsetWidth + 25;
+    const track = document.querySelector('.brands-track');
 
-            if (position >= firstWidth) {
-                track.appendChild(firstCard);
-                position = 0;
-                track.style.transform = `translateX(0)`;
-            }
+    if (!track) return;
 
-            requestAnimationFrame(animate);
+    let position = 0;
+    const speed = 0.3; // قللها لنعومة أكثر
+
+    function animate() {
+        position += speed;
+        track.style.transform = `translateX(-${position}px)`;
+
+        const firstCard = track.children[0];
+        const firstWidth = firstCard.offsetWidth + 25;
+
+        // لما يخرج أول كرت
+        if (position >= firstWidth) {
+            track.appendChild(firstCard);
+
+            // بدل reset كامل → نخصم فقط عرض الكرت
+            position -= firstWidth;
         }
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+});
 
         animate();
     }
