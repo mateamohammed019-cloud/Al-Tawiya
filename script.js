@@ -1,7 +1,7 @@
 // تحميل Navbar و Sidebar من الملفات المستقلة
 document.addEventListener("DOMContentLoaded", () => {
 
-    // تحديد المسار الصحيح تلقائيًا (في الصفحات الداخلية أو الرئيسية)
+    // تحديد المسار الصحيح تلقائيًا
     const basePath = window.location.pathname.includes('/pages/') ? '../' : '';
 
     // تحميل Navbar
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => res.text())
         .then(data => {
             document.getElementById('navbar').innerHTML = data;
-            attachMenuEvents(); // بعد تحميل الـ Navbar
+            attachMenuEvents();
         });
 
     // تحميل Sidebar
@@ -17,17 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => res.text())
         .then(data => {
             document.getElementById('sidebar-container').innerHTML = data;
-            attachMenuEvents(); // بعد تحميل الـ Sidebar
+            attachMenuEvents();
         });
 
-    // دالة ربط الأحداث بعد تحميل القائمتين
     function attachMenuEvents() {
         const menuBtn = document.getElementById("menuBtn");
         const sidebar = document.getElementById("sidebar");
         const closeBtn = document.getElementById("closeBtn");
         let overlay = document.getElementById("overlay");
 
-        // إذا لم يكن هناك overlay، نضيفه مرة واحدة فقط
         if (!overlay) {
             overlay = document.createElement("div");
             overlay.id = "overlay";
@@ -56,4 +54,31 @@ document.addEventListener("DOMContentLoaded", () => {
             };
         }
     }
+
+    // ===== تشغيل حركة البراند =====
+    const track = document.querySelector('.brands-track');
+
+    if (track) {
+        let position = 0;
+        const speed = 0.5;
+
+        function animate() {
+            position += speed;
+            track.style.transform = `translateX(-${position}px)`;
+
+            const firstCard = track.children[0];
+            const firstWidth = firstCard.offsetWidth + 25;
+
+            if (position >= firstWidth) {
+                track.appendChild(firstCard);
+                position = 0;
+                track.style.transform = `translateX(0)`;
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    }
+
 });
