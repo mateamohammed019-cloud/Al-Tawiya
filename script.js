@@ -1,33 +1,33 @@
 // تحميل Navbar و Sidebar من الملفات المستقلة
 document.addEventListener("DOMContentLoaded", () => {
 
-    // تحديد المسار الصحيح تلقائيًا
+    // تحديد المسار الصحيح تلقائيًا (في الصفحات الداخلية أو الرئيسية)
     const basePath = window.location.pathname.includes('/pages/') ? '../' : '';
 
-    // ===== تحميل Navbar =====
+    // تحميل Navbar
     fetch(basePath + 'component/navbar.html')
         .then(res => res.text())
         .then(data => {
             document.getElementById('navbar').innerHTML = data;
-            attachMenuEvents();
+            attachMenuEvents(); // بعد تحميل الـ Navbar
         });
 
-    // ===== تحميل Sidebar =====
+    // تحميل Sidebar
     fetch(basePath + 'component/sidebar.html')
         .then(res => res.text())
         .then(data => {
             document.getElementById('sidebar-container').innerHTML = data;
-            attachMenuEvents();
+            attachMenuEvents(); // بعد تحميل الـ Sidebar
         });
 
-    // ===== دالة ربط أحداث القوائم =====
+    // دالة ربط الأحداث بعد تحميل القائمتين
     function attachMenuEvents() {
         const menuBtn = document.getElementById("menuBtn");
         const sidebar = document.getElementById("sidebar");
         const closeBtn = document.getElementById("closeBtn");
         let overlay = document.getElementById("overlay");
 
-        // إنشاء overlay مرة واحدة فقط
+        // إذا لم يكن هناك overlay، نضيفه مرة واحدة فقط
         if (!overlay) {
             overlay = document.createElement("div");
             overlay.id = "overlay";
@@ -56,31 +56,4 @@ document.addEventListener("DOMContentLoaded", () => {
             };
         }
     }
-
-    // ===== تشغيل حركة البراند =====
-    const track = document.querySelector('.brands-track');
-
-    if (track) {
-        let position = 0;
-        const speed = 0.3; // سرعة الحركة (قللها للنعومة)
-
-        function animate() {
-            position += speed;
-            track.style.transform = `translateX(-${position}px)`;
-
-            const firstCard = track.children[0];
-            const firstWidth = firstCard.offsetWidth + 25; // عرض الكرت + الفجوة
-
-            // إعادة أول كرت عند خروجه من العرض
-            if (position >= firstWidth) {
-                track.appendChild(firstCard);
-                position -= firstWidth;
-            }
-
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-    }
-
 });
