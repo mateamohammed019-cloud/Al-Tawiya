@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             menuBtn.onclick = () => {
                 sidebar.classList.add("show");
                 overlay.classList.add("show");
-            };
+            }; 
         }
 
         if (closeBtn && sidebar && overlay) {
